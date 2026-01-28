@@ -1,0 +1,73 @@
+Struktur Folder E-Ensiklopedia Madura (Laravel)
+================================================
+
+e-ensiklopedia-laravel/
+├── app/
+│   ├── Models/
+│   │   ├── Produk.php
+│   │   ├── Gambar.php
+│   │   ├── Video.php
+│   │   ├── Glossarium.php
+│   │   └── NilaiBudaya.php
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── ProdukController.php
+│   │       ├── GlosariumController.php
+│   │       └── HomeController.php
+│   └── Providers/
+│       └── AppServiceProvider.php
+│
+├── database/
+│   ├── migrations/
+│   │   ├── 2024_01_28_000001_create_produk_table.php
+│   │   ├── 2024_01_28_000002_create_gambar_table.php
+│   │   ├── 2024_01_28_000003_create_video_table.php
+│   │   ├── 2024_01_28_000004_create_glossarium_table.php
+│   │   ├── 2024_01_28_000005_create_nilai_budaya_table.php
+│   │   └── 2024_01_28_000006_create_produk_nilai_budaya_table.php
+│   ├── seeders/
+│   │   ├── DatabaseSeeder.php
+│   │   ├── ProdukSeeder.php
+│   │   └── GlosariumSeeder.php
+│   └── factories/
+│       ├── ProdukFactory.php
+│       └── GlosariumFactory.php
+│
+├── resources/
+│   ├── views/
+│   │   ├── layouts/
+│   │   │   ├── app.blade.php
+│   │   │   └── navbar.blade.php
+│   │   ├── home/
+│   │   │   ├── index.blade.php
+│   │   │   ├── petis_madura.blade.php
+│   │   │   ├── tambal_garam.blade.php
+│   │   │   └── renginang.blade.php
+│   │   ├── produk/
+│   │   │   ├── index.blade.php
+│   │   │   ├── show.blade.php
+│   │   │   └── galeri.blade.php
+│   │   ├── glossarium/
+│   │   │   └── index.blade.php
+│   │   └── partials/
+│   │       ├── header.blade.php
+│   │       └── footer.blade.php
+│   └── css/
+│       └── style.css
+│
+├── routes/
+│   ├── web.php
+│   └── api.php
+│
+├── public/
+│   ├── images/
+│   │   └── produk/
+│   ├── videos/
+│   │   └── (link youtube disimpan di database)
+│   └── css/
+│       └── style.css
+│
+├── .env.example
+├── composer.json
+├── README.md
+└── PANDUAN_INSTALASI.md
