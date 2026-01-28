@@ -1,223 +1,145 @@
-# E-ENSIKLOPEDIA ETNOSAING MADURA
+# E-Ensiklopedia Etnosains Madura
 
-Website pembelajaran interaktif tentang warisan budaya Madura
+Platform pembelajaran IPAS (Ilmu Pengetahuan Alam dan Sosial) berbasis budaya lokal Madura untuk siswa Sekolah Dasar.
 
-## Fitur Utama
+## 📚 Tentang Project
 
-✨ **Koleksi Produk Budaya**
-- Makanan tradisional (Petis, Tambal Garam, Renginang)
-- Kerajinan tangan (Batik Madura)
-- Informasi lengkap setiap produk
+E-Ensiklopedia Etnosains Madura adalah media pembelajaran digital yang menghubungkan sains dengan budaya lokal Madura. Melalui platform ini, siswa dapat mempelajari produk budaya Madura sambil memahami konsep-konsep sains yang terkandung di dalamnya.
 
-📸 **Galeri Foto Produk**
-- Multiple photos per produk
-- Image carousel interaktif
-- Zoom dan preview modal
+## ✨ Fitur Utama
 
-🎥 **Video Tutorial**
-- Integrasi YouTube links
-- Embed video player
-- Informasi durasi video
+- **Halaman Modul Pembelajaran**: 8 halaman terstruktur (Sampul, Identitas, Tujuan, Target Pengguna, Keunggulan, Petunjuk, Pengenalan Etnosains, Daftar Produk)
+- **Produk Budaya**: Batik Madura, Petis, Rengginang Lorjuk, Terasi
+- **Glosarium**: Kamus istilah budaya dan sains Madura
+- **Galeri**: Koleksi foto produk budaya
+- **Navigasi Interaktif**: Tombol Kembali-Lanjut di setiap halaman
+- **Responsive Design**: Dapat diakses melalui HP dan Laptop
 
-📖 **Glosarium Istilah**
-- Kamus istilah budaya Madura
-- Penjelasan lengkap arti kata
-- Kategori per istilah
+## 🎯 Target Pengguna
 
-🔍 **Fitur Pencarian**
-- Search produk real-time
-- Filter berdasarkan kategori
-- Search glosarium
+- **Siswa**: Kelas V SD/MI
+- **Guru**: Referensi pembelajaran IPAS
+- **Peneliti**: Dokumentasi etnosains budaya Madura
+- **Masyarakat**: Mengenal budaya Madura
 
-📱 **Responsive Design**
-- Mobile-friendly interface
-- Kompatibel semua browser
-- Design modern dan intuitif
+## 🛠️ Teknologi
 
-## Teknologi yang Digunakan
-
-- **Backend**: Laravel 10.x (PHP 8.1+)
+- **Framework**: Laravel 10.x
 - **Database**: MySQL
-- **Frontend**: Bootstrap 5, HTML5, CSS3
-- **CSS Framework**: Bootstrap 5
-- **Icons**: Font Awesome 6
+- **Frontend**: Bootstrap 5, Font Awesome
+- **Server**: Laragon (Development)
 
-## Struktur Project
+## 📋 Persyaratan Sistem
 
-```
-e-ensiklopedia-laravel/
-├── app/
-│   ├── Models/          (Model data)
-│   └── Http/Controllers/  (Business logic)
-├── database/
-│   ├── migrations/      (Database schema)
-│   └── seeders/         (Sample data)
-├── resources/
-│   └── views/           (HTML templates)
-├── routes/              (URL routing)
-├── public/              (Static files)
-└── .env                 (Configuration)
-```
+- PHP >= 8.1
+- MySQL >= 5.7
+- Composer
+- Laragon v6 (Recommended)
 
-## Database Schema
+## 🚀 Instalasi
 
-### Tabel Utama
-- **produk** - Produk budaya Madura
-- **gambar** - Foto produk
-- **video** - Video tutorial YouTube
-- **glossarium** - Istilah budaya
-- **nilai_budaya** - Filosofi budaya
-- **produk_nilai_budaya** - Relasi produk & nilai
-
-## Instalasi Cepat
+### 1. Clone Repository
 
 ```bash
-# 1. Setup database
-mysql -u root -p
-CREATE DATABASE e_ensiklopedia;
+git clone https://github.com/rhmatzeka/BudayaMadura.git
+cd BudayaMadura
+```
 
-# 2. Install dependencies
+### 2. Install Dependencies
+
+```bash
 composer install
+```
 
-# 3. Setup environment
+### 3. Setup Environment
+
+```bash
 cp .env.example .env
+```
+
+Edit file `.env` dan sesuaikan konfigurasi database:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=e_ensiklopedia
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 4. Generate Application Key
+
+```bash
 php artisan key:generate
+```
 
-# 4. Jalankan migrations
-php artisan migrate
+### 5. Setup Database
 
-# 5. Seed data sample
-php artisan db:seed
+Buat database `e_ensiklopedia` di MySQL, lalu import file SQL:
 
-# 6. Start server
+```bash
+mysql -u root -p e_ensiklopedia < database_lengkap_modul.sql
+```
+
+Atau gunakan HeidiSQL:
+1. Buka HeidiSQL
+2. Pilih database `e_ensiklopedia`
+3. File → Load SQL file → Pilih `database_lengkap_modul.sql`
+4. Run (F9)
+
+### 6. Jalankan Server
+
+```bash
 php artisan serve
 ```
 
-Akses di: `http://localhost:8000`
+Akses: `http://localhost:8000`
 
-## Routes Tersedia
+## 📖 Struktur Database
 
-| URL | Fungsi |
-|-----|--------|
-| `/` | Halaman beranda |
-| `/produk` | Daftar semua produk |
-| `/produk/{slug}` | Detail produk |
-| `/produk/galeri` | Galeri foto |
-| `/produk/search?q=...` | Cari produk |
-| `/produk/kategori/{kategori}` | Filter kategori |
-| `/glossarium` | Daftar istilah |
-| `/glossarium/search?q=...` | Cari istilah |
+- `halaman_modul` - Halaman-halaman modul pembelajaran
+- `produk` - Data produk budaya Madura
+- `glossarium` - Kamus istilah budaya dan sains
+- `gambar` - Gambar produk
+- `video` - Video tutorial
+- `nilai_budaya` - Nilai-nilai budaya
+- `produk_nilai_budaya` - Relasi produk dengan nilai budaya
 
-## Cara Menambah Data
+## 🎨 Struktur Halaman
 
-### 1. Produk Baru
-```php
-App\Models\Produk::create([
-    'nama_produk' => 'Nama Produk',
-    'slug' => 'nama-produk',
-    'deskripsi' => 'Deskripsi...',
-    'kategori' => 'Makanan',
-]);
-```
+1. **Sampul Depan** - Halaman pembuka dengan ilustrasi produk
+2. **Identitas** - Informasi penyusun dan sasaran
+3. **Tujuan E-Ensiklopedia** - Tujuan pembelajaran
+4. **Target Pengguna** - Siswa, Guru, Peneliti, Masyarakat
+5. **Keunggulan E-Ensiklopedia** - Fitur dan keunggulan
+6. **Petunjuk Penggunaan** - Cara menggunakan platform
+7. **Pengenalan Etnosains** - Penjelasan tentang etnosains
+8. **Daftar Produk** - Pilihan produk untuk dipelajari
 
-### 2. Gambar Produk
-```php
-App\Models\Gambar::create([
-    'produk_id' => 1,
-    'path_gambar' => 'nama-file.jpg',
-    'judul_gambar' => 'Judul Foto',
-]);
-```
+## 👥 Kontributor
 
-### 3. Video YouTube
-```php
-App\Models\Video::create([
-    'produk_id' => 1,
-    'link_youtube' => 'https://youtube.com/watch?v=...',
-    'judul_video' => 'Judul Video',
-]);
-```
+- **Penyusun**: Leli Lestari
+- **Developer**: [Your Name]
+- **Tahun**: 2026
 
-### 4. Istilah Glosarium
-```php
-App\Models\Glossarium::create([
-    'istilah' => 'Petis',
-    'arti_istilah' => 'Pasta fermentasi ikan teri',
-    'kategori' => 'Makanan',
-]);
-```
+## 📝 Lisensi
 
-## Screenshot Halaman
+Project ini dibuat untuk keperluan pendidikan dan penelitian.
 
-### 🏠 Halaman Beranda
-- Hero section dengan branding
-- Statistik jumlah produk
-- Search bar produk
-- Produk terbaru
-- Quick links
+## 📞 Kontak
 
-### 🛍️ Halaman Produk
-- Grid produk dengan pagination
-- Filter kategori
-- Card produk dengan gambar
-- Badge kategori & lokasi
+Untuk pertanyaan atau saran, silakan hubungi:
+- Email: [email]
+- GitHub: [@rhmatzeka](https://github.com/rhmatzeka)
 
-### 📄 Halaman Detail Produk
-- Carousel galeri foto
-- Informasi lengkap
-- Video tutorial embed
-- Nilai budaya terkait
-- Produk terkait (sidebar)
+## 🙏 Acknowledgments
 
-### 📸 Halaman Galeri
-- Thumbnail grid
-- Modal preview gambar
-- Link ke produk detail
-
-### 📚 Halaman Glosarium
-- Daftar istilah dengan search
-- Filter kategori
-- Definisi & penjelasan
-- Statistik kategori
-
-## Video YouTube Integration
-
-Sistem otomatis mengkonversi link YouTube:
-- **Input**: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
-- **Embed**: `https://www.youtube.com/embed/dQw4w9WgXcQ`
-
-## Fitur Keamanan
-
-✅ SQL Injection Protection (Eloquent ORM)
-✅ XSS Protection (Blade escaping)
-✅ CSRF Protection (Laravel middleware)
-✅ Soft deletes untuk data produk
-
-## Performance
-
-⚡ Database indexing
-⚡ Pagination untuk daftar panjang
-⚡ Lazy loading relationships
-⚡ Asset optimization (Bootstrap CDN)
-
-## Mobile Responsive
-
-📱 Bootstrap 5 grid system
-📱 Touch-friendly interface
-📱 Optimized images
-📱 Mobile menu collapse
-
-## Dokumentasi Lengkap
-
-Lihat file: `PANDUAN_INSTALASI.md`
-
-## Support & Lisensi
-
-Dibuat untuk proyek pembelajaran: **E-Ensiklopedia Etnosaing Madura**
-
-**Versi**: 1.0
-**Tahun**: 2024
+Terima kasih kepada:
+- Masyarakat Madura yang telah melestarikan budaya
+- Guru dan siswa yang menggunakan platform ini
+- Semua pihak yang mendukung project ini
 
 ---
 
-Made with ❤️ for Budaya Madura
+**E-Ensiklopedia Etnosains Madura** - Melestarikan Budaya Melalui Pembelajaran Sains 🏝️📚

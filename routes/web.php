@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\GlosariumController;
+use App\Http\Controllers\ModulController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,12 @@ use App\Http\Controllers\GlosariumController;
 |
 */
 
-// Homepage
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Homepage - Sampul Depan
+Route::get('/', [ModulController::class, 'show'])->defaults('slug', 'sampul-depan')->name('home');
+
+// Modul Routes - Daftar Isi
+Route::get('/modul', [ModulController::class, 'index'])->name('modul.index');
+Route::get('/modul/{slug}', [ModulController::class, 'show'])->name('modul.show');
 
 // Produk Routes
 Route::prefix('produk')->name('produk.')->group(function () {

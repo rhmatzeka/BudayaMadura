@@ -33,4 +33,7 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
-exit($kernel->handle($argv));
+use Symfony\Component\Console\Input\ArgvInput;
+
+$input = new ArgvInput();
+exit($kernel->handle($input));
