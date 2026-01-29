@@ -2,7 +2,7 @@
 
 Platform pembelajaran IPAS (Ilmu Pengetahuan Alam dan Sosial) berbasis budaya lokal Madura untuk siswa Sekolah Dasar.
 
-## 📚 Tentang Project
+## 📚 Tentang Project ini
 
 E-Ensiklopedia Etnosains Madura adalah media pembelajaran digital yang menghubungkan sains dengan budaya lokal Madura. Melalui platform ini, siswa dapat mempelajari produk budaya Madura sambil memahami konsep-konsep sains yang terkandung di dalamnya.
 
