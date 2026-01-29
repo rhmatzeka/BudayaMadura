@@ -33,7 +33,8 @@ INSERT INTO halaman_modul (judul, slug, konten, urutan, icon) VALUES
 ('Keunggulan E-Ensiklopedia', 'keunggulan', 'Keunggulan dan fitur e-ensiklopedia', 5, 'fa-star'),
 ('Petunjuk Penggunaan', 'petunjuk-penggunaan', 'Cara menggunakan e-ensiklopedia', 6, 'fa-book-reader'),
 ('Pengenalan Etnosains', 'pengenalan-etnosains', 'Penjelasan tentang etnosains', 7, 'fa-flask'),
-('Daftar Produk', 'daftar-produk', 'Mari Mengenal Produk Lokal Madura', 8, 'fa-list');
+('Daftar Produk', 'daftar-produk', 'Mari Mengenal Produk Lokal Madura', 8, 'fa-list'),
+('Glosarium', 'glosarium', 'Kamus istilah budaya dan sains Madura', 9, 'fa-book');
 
 -- ============================================
 -- 2. CEK TABEL PRODUK (Pastikan sudah ada)

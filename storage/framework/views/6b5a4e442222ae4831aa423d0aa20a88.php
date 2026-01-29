@@ -29,6 +29,8 @@
     <?php echo $__env->make('modul.pages.pengenalan-etnosains', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php elseif($halaman->slug == 'daftar-produk'): ?>
     <?php echo $__env->make('modul.pages.daftar-produk', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php elseif($halaman->slug == 'glosarium'): ?>
+    <?php echo $__env->make('modul.pages.glosarium', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php endif; ?>
 
 <!-- Navigation -->

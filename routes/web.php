@@ -10,11 +10,6 @@ use App\Http\Controllers\ModulController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
 // Homepage - Sampul Depan
@@ -33,15 +28,17 @@ Route::prefix('produk')->name('produk.')->group(function () {
     Route::get('/{produk}', [ProdukController::class, 'show'])->name('show');
 });
 
-// Glossarium Routes
-Route::prefix('glossarium')->name('glossarium.')->group(function () {
-    Route::get('/', [GlosariumController::class, 'index'])->name('index');
-    Route::get('/search', [GlosariumController::class, 'search'])->name('search');
-    Route::get('/kategori/{kategori}', [GlosariumController::class, 'kategori'])->name('kategori');
-});
+// Glossarium Routes - Sebagai halaman biasa dengan navigasi
+Route::get('/glossarium', [GlosariumController::class, 'index'])->name('glossarium.index');
+Route::get('/glossarium/{id}', [GlosariumController::class, 'show'])->name('glossarium.show');
 
-// API Routes (opsional untuk AJAX)
-Route::prefix('api')->name('api.')->group(function () {
-    Route::get('/produk/search', [ProdukController::class, 'search']);
-    Route::get('/glossarium/search', [GlosariumController::class, 'search']);
+// Tentang Routes
+use App\Http\Controllers\TentangController;
+Route::prefix('tentang')->name('tentang.')->group(function () {
+    Route::get('/', [TentangController::class, 'index'])->name('index');
+    Route::get('/tujuan', [TentangController::class, 'tujuan'])->name('tujuan');
+    Route::get('/target-pengguna', [TentangController::class, 'targetPengguna'])->name('target-pengguna');
+    Route::get('/keunggulan', [TentangController::class, 'keunggulan'])->name('keunggulan');
+    Route::get('/petunjuk-penggunaan', [TentangController::class, 'petunjukPenggunaan'])->name('petunjuk-penggunaan');
+    Route::get('/pengenalan-etnosains', [TentangController::class, 'pengenalanEtnosains'])->name('pengenalan-etnosains');
 });

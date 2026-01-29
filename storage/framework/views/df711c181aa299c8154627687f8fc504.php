@@ -71,11 +71,13 @@
         .search-box {
             background: white;
             border-radius: 25px;
-            padding: 8px 20px;
+            padding: 8px 15px;
             border: 2px solid var(--accent);
             display: flex;
             align-items: center;
             gap: 10px;
+            max-width: 300px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .search-box input {
@@ -83,15 +85,34 @@
             outline: none;
             flex: 1;
             font-size: 0.9rem;
+            padding: 0;
+            min-width: 150px;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+            font-size: 0.9rem;
         }
 
         .search-box button {
             background: var(--brown);
             border: none;
             color: white;
-            padding: 6px 15px;
-            border-radius: 15px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .search-box button:hover {
+            background: var(--dark-brown);
+            transform: scale(1.1);
         }
 
         /* Navigation */
@@ -270,9 +291,44 @@
             .logo-text h1 {
                 font-size: 1.2rem;
             }
+            
+            .logo-text p {
+                font-size: 0.75rem;
+            }
+            
+            .search-box {
+                max-width: 100%;
+                margin-top: 15px;
+            }
+            
             .main-content {
                 padding: 20px;
                 margin: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text h1 {
+                font-size: 1rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .search-box {
+                padding: 6px 12px;
+            }
+            
+            .search-box input {
+                font-size: 0.85rem;
+                min-width: 100px;
+            }
+            
+            .search-box button {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -294,12 +350,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
                     <div class="search-box">
-                        <i class="fas fa-search" style="color: var(--brown);"></i>
+                        <i class="fas fa-search" style="color: var(--brown); font-size: 0.9rem;"></i>
                         <input type="text" placeholder="Cari Produk..." id="searchInput">
                         <button onclick="performSearch()">
-                            <i class="fas fa-search me-1"></i> Cari
+                            <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
@@ -319,9 +375,6 @@
                 </a></li>
                 <li><a href="<?php echo e(route('produk.index')); ?>" class="<?php echo e(request()->routeIs('produk.*') ? 'active' : ''); ?>">
                     <i class="fas fa-box me-1"></i> Produk Budaya
-                </a></li>
-                <li><a href="<?php echo e(route('glossarium.index')); ?>" class="<?php echo e(request()->routeIs('glossarium.*') ? 'active' : ''); ?>">
-                    <i class="fas fa-book me-1"></i> Glosarium
                 </a></li>
                 <li><a href="<?php echo e(route('produk.galeri')); ?>">
                     <i class="fas fa-images me-1"></i> Galeri

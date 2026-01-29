@@ -29,6 +29,8 @@
     @include('modul.pages.pengenalan-etnosains')
 @elseif($halaman->slug == 'daftar-produk')
     @include('modul.pages.daftar-produk')
+@elseif($halaman->slug == 'glosarium')
+    @include('modul.pages.glosarium')
 @endif
 
 <!-- Navigation -->

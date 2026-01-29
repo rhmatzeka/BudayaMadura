@@ -4,47 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Glossarium;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class GlosariumController extends Controller
 {
     /**
      * Display a listing of glossarium
      */
-    public function index(): View
+    public function index()
     {
-        $glossarium = Glossarium::orderBy('istilah', 'asc')->paginate(20);
-        return view('glossarium.index', compact('glossarium'));
-    }
-
-    /**
-     * Search glossarium
-     */
-    public function search()
-    {
-        $search = request('q');
+        $glossarium = Glossarium::orderBy('istilah', 'asc')->get();
+        $firstItem = $glossarium->first();
         
-        if (strlen($search) < 1) {
-            return view('glossarium.index', ['glossarium' => collect()]);
+        if ($firstItem) {
+            return redirect()->route('glossarium.show', $firstItem->id);
         }
-
-        $glossarium = Glossarium::where('istilah', 'LIKE', "%{$search}%")
-            ->orWhere('arti_istilah', 'LIKE', "%{$search}%")
-            ->orWhere('kategori', 'LIKE', "%{$search}%")
-            ->orderBy('istilah', 'asc')
-            ->paginate(20)
-            ->appends(['q' => $search]);
-
-        return view('glossarium.index', compact('glossarium', 'search'));
+        
+        return view('glossarium.show', ['item' => null, 'allItems' => $glossarium]);
     }
 
     /**
-     * Filter glossarium by category
+     * Show single glossarium with navigation
      */
-    public function kategori($kategori): View
+    public function show($id): View
     {
-        $glossarium = Glossarium::where('kategori', $kategori)
-            ->orderBy('istilah', 'asc')
-            ->paginate(20);
-        return view('glossarium.index', compact('glossarium', 'kategori'));
+        $allItems = Glossarium::orderBy('istilah', 'asc')->get();
+        $item = Glossarium::findOrFail($id);
+        
+        // Find current index
+        $currentIndex = $allItems->search(function($glossarium) use ($id) {
+            return $glossarium->id == $id;
+        });
+        
+        // Get previous and next
+        $previous = $currentIndex > 0 ? $allItems[$currentIndex - 1] : null;
+        $next = $currentIndex < $allItems->count() - 1 ? $allItems[$currentIndex + 1] : null;
+        
+        return view('glossarium.show', compact('item', 'allItems', 'previous', 'next', 'currentIndex'));
     }
 }
