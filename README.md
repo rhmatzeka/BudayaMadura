@@ -1,145 +1,93 @@
-# E-Ensiklopedia Etnosains Madura
+# Madura Ethnoscience E-Encyclopedia
 
-Platform pembelajaran IPAS (Ilmu Pengetahuan Alam dan Sosial) berbasis budaya lokal Madura untuk siswa Sekolah Dasar.
+A learning website for grade 5 elementary school students that teaches science through the local culture of **Madura**, an island in East Java, Indonesia. Students explore traditional Madurese products, such as batik and petis, and learn the science behind how they are made.
 
-## 📚 Tentang Project ini
+The site content is in Indonesian, because it is written for Indonesian students.
 
-E-Ensiklopedia Etnosains Madura adalah media pembelajaran digital yang menghubungkan sains dengan budaya lokal Madura. Melalui platform ini, siswa dapat mempelajari produk budaya Madura sambil memahami konsep-konsep sains yang terkandung di dalamnya.
+## Features
 
-## ✨ Fitur Utama
+- **Learning module** with guided pages: cover, author info, goals, target users, highlights, how to use, an introduction to ethnoscience, and the product list
+- **Cultural products**: Madura batik, petis (fermented shrimp paste), rengginang lorjuk (razor clam crackers), and terasi (shrimp paste), each with photos, videos, and the science behind them
+- **Glossary** of cultural and science terms, with next/previous buttons for each term
+- **Photo gallery**
+- **Back / Next buttons** on every page, so it reads like a book
+- Works on phones and laptops
 
-- **Halaman Modul Pembelajaran**: 8 halaman terstruktur (Sampul, Identitas, Tujuan, Target Pengguna, Keunggulan, Petunjuk, Pengenalan Etnosains, Daftar Produk)
-- **Produk Budaya**: Batik Madura, Petis, Rengginang Lorjuk, Terasi
-- **Glosarium**: Kamus istilah budaya dan sains Madura
-- **Galeri**: Koleksi foto produk budaya
-- **Navigasi Interaktif**: Tombol Kembali-Lanjut di setiap halaman
-- **Responsive Design**: Dapat diakses melalui HP dan Laptop
+## Who it's for
 
-## 🎯 Target Pengguna
+- **Students**: grade 5 elementary school (SD/MI)
+- **Teachers**: reference material for science and social studies (IPAS)
+- **Researchers and the public**: documentation of Madurese ethnoscience
 
-- **Siswa**: Kelas V SD/MI
-- **Guru**: Referensi pembelajaran IPAS
-- **Peneliti**: Dokumentasi etnosains budaya Madura
-- **Masyarakat**: Mengenal budaya Madura
+## Tech stack
 
-## 🛠️ Teknologi
+Laravel 10, PHP 8.1+, MySQL, Bootstrap 5, Font Awesome
 
-- **Framework**: Laravel 10.x
-- **Database**: MySQL
-- **Frontend**: Bootstrap 5, Font Awesome
-- **Server**: Laragon (Development)
+## Getting started
 
-## 📋 Persyaratan Sistem
+You need PHP 8.1+, Composer, and MySQL 5.7+. On Windows, [Laragon](https://laragon.org) is the easiest option.
 
-- PHP >= 8.1
-- MySQL >= 5.7
-- Composer
-- Laragon v6 (Recommended)
+1. Install dependencies:
 
-## 🚀 Instalasi
+   ```bash
+   composer install
+   ```
 
-### 1. Clone Repository
+2. Create your environment file and app key:
 
-```bash
-git clone https://github.com/rhmatzeka/BudayaMadura.git
-cd BudayaMadura
-```
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-### 2. Install Dependencies
+3. Set the database in `.env`:
 
-```bash
-composer install
-```
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=e_ensiklopedia
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-### 3. Setup Environment
+4. Create the `e_ensiklopedia` database and import the content:
 
-```bash
-cp .env.example .env
-```
+   ```bash
+   mysql -u root -p e_ensiklopedia < database_lengkap_modul.sql
+   ```
 
-Edit file `.env` dan sesuaikan konfigurasi database:
+5. Start the server and open http://localhost:8000:
 
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=e_ensiklopedia
-DB_USERNAME=root
-DB_PASSWORD=
-```
+   ```bash
+   php artisan serve
+   ```
 
-### 4. Generate Application Key
+For a Windows + Laragon setup with a nice local domain, see [README_SETUP.md](README_SETUP.md).
 
-```bash
-php artisan key:generate
-```
+## Main pages
 
-### 5. Setup Database
+| URL | Page |
+| --- | --- |
+| `/` | Cover page |
+| `/modul` | Table of contents |
+| `/produk` | Cultural products (with search, categories, and gallery) |
+| `/glossarium` | Glossary |
+| `/tentang` | About: goals, target users, highlights, how to use |
 
-Buat database `e_ensiklopedia` di MySQL, lalu import file SQL:
+## Database tables
 
-```bash
-mysql -u root -p e_ensiklopedia < database_lengkap_modul.sql
-```
+| Table | What it holds |
+| --- | --- |
+| `halaman_modul` | Module pages |
+| `produk` | Cultural products |
+| `gambar`, `video` | Product photos and videos |
+| `glossarium` | Glossary terms |
+| `nilai_budaya`, `produk_nilai_budaya` | Cultural values and which products they belong to |
 
-Atau gunakan HeidiSQL:
-1. Buka HeidiSQL
-2. Pilih database `e_ensiklopedia`
-3. File → Load SQL file → Pilih `database_lengkap_modul.sql`
-4. Run (F9)
+## Credits
 
-### 6. Jalankan Server
+- **Content author**: Leli Lestari
+- **Developer**: [@rhmatzeka](https://github.com/rhmatzeka)
 
-```bash
-php artisan serve
-```
-
-Akses: `http://localhost:8000`
-
-## 📖 Struktur Database
-
-- `halaman_modul` - Halaman-halaman modul pembelajaran
-- `produk` - Data produk budaya Madura
-- `glossarium` - Kamus istilah budaya dan sains
-- `gambar` - Gambar produk
-- `video` - Video tutorial
-- `nilai_budaya` - Nilai-nilai budaya
-- `produk_nilai_budaya` - Relasi produk dengan nilai budaya
-
-## 🎨 Struktur Halaman
-
-1. **Sampul Depan** - Halaman pembuka dengan ilustrasi produk
-2. **Identitas** - Informasi penyusun dan sasaran
-3. **Tujuan E-Ensiklopedia** - Tujuan pembelajaran
-4. **Target Pengguna** - Siswa, Guru, Peneliti, Masyarakat
-5. **Keunggulan E-Ensiklopedia** - Fitur dan keunggulan
-6. **Petunjuk Penggunaan** - Cara menggunakan platform
-7. **Pengenalan Etnosains** - Penjelasan tentang etnosains
-8. **Daftar Produk** - Pilihan produk untuk dipelajari
-
-## 👥 Kontributor
-
-- **Penyusun**: Leli Lestari
-- **Developer**: [Your Name]
-- **Tahun**: 2026
-
-## 📝 Lisensi
-
-Project ini dibuat untuk keperluan pendidikan dan penelitian.
-
-## 📞 Kontak
-
-Untuk pertanyaan atau saran, silakan hubungi:
-- Email: [email]
-- GitHub: [@rhmatzeka](https://github.com/rhmatzeka)
-
-## 🙏 Acknowledgments
-
-Terima kasih kepada:
-- Masyarakat Madura yang telah melestarikan budaya
-- Guru dan siswa yang menggunakan platform ini
-- Semua pihak yang mendukung project ini
-
----
-
-**E-Ensiklopedia Etnosains Madura** - Melestarikan Budaya Melalui Pembelajaran Sains 🏝️📚
+Made for education and research.
